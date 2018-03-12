@@ -1,4 +1,4 @@
-A fork ERC20 standard based on https://ethereum.org/token
+A fork of ERC20 standard example based on https://ethereum.org/token
 
 Changes:
 - use Compiler 0.4.21
