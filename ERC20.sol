@@ -169,17 +169,11 @@ contract TokenERC20 {
     }
 }
 
-contract TokenERC223 is TokenERC20{
-    function tokenFallback(address _from, uint _value, bytes _data) public;
-    function transfer(address to, uint value, bytes data) public;
-    event Transfer(address indexed from, address indexed to, uint value, bytes data);
-}
-
 /******************************************/
 /*       ADVANCED TOKEN STARTS HERE       */
 /******************************************/
 
-contract MyAdvancedToken is owned, TokenERC223 {
+contract MyAdvancedToken is owned, TokenERC20 {
 
     uint256 public sellPrice;
     uint256 public buyPrice;
@@ -246,5 +240,13 @@ contract MyAdvancedToken is owned, TokenERC223 {
         require(address(this).balance >= amount * sellPrice);      // checks if the contract has enough ether to buy
         _transfer(msg.sender, this, amount);              // makes the transfers
         msg.sender.transfer(amount * sellPrice);          // sends ether to the seller. It's important to do this last to avoid recursion attacks
+    }
+}
+
+//Implement Coin here, change parameter as you need
+
+contract NewCoin is MyAdvancedToken{
+    function NewCoin() MyAdvancedToken(1000000, "BGC20", "B20") public{
+        
     }
 }
