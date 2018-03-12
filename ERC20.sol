@@ -53,6 +53,13 @@ contract TokenERC20 {
         symbol = tokenSymbol;                               // Set the symbol for display purposes
     }
 
+    //internal function to convert value to smallest value
+
+    function valueToSmallest(uint256 _value) internal view returns(uint256){
+        _value = _value * 10 ** uint256(decimals);
+        return (_value);
+    }
+
     /**
      * Internal transfer, only can be called by this contract
      */
@@ -65,6 +72,8 @@ contract TokenERC20 {
         require(balanceOf[_to] + _value > balanceOf[_to]);
         // Save this for an assertion in the future
         uint previousBalances = balanceOf[_from] + balanceOf[_to];
+        //convert value to smallest value
+        valueToSmallest(_value);
         // Subtract from the sender
         balanceOf[_from] -= _value;
         // Add the same to the recipient

@@ -6,3 +6,4 @@ Changes:
 - add 'emit' to Event
 - change this type to address. this.balance -> address(this).balance
 - add implementation parameter to make easier to deploy
+- add valueToSmallest function, to convert transfered value to smallest one
